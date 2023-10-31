@@ -46,7 +46,7 @@ resource "google_compute_instance" "vm" {
       # Add the user to the admin group
       Add-LocalGroupMember -Group "Administrators" -Member $name
 
-      Start-Process ssh-keygen -b 4096 -f C:\Users\$name\.ssh\$name -C $email -N $passphrase '' -Wait
+      ssh-keygen -b 4096 -f C:\Users\$name\.ssh\$name -C $email -N $passphrase '' -Wait
 
       $authorizedKeysFile = "C:\Users\$name\.ssh\authorized_keys"
       Add-Content -Path $authorizedKeysFile -Value (Get-Content "C:\Users\$name\.ssh\key.pub")
